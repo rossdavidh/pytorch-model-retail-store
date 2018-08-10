@@ -50,4 +50,5 @@ if __name__ == '__main__':
     #predictions                = model(x)
     df['predictions']          = model(x).data.numpy()[:,0]
     slope, intercept, r_value, p_value, std_err = linregress(df['predictions'], df['total_sales'])
-    print('r_value',r_value, 'p_value',p_value, 'std_err',std_err)
+    print('R squared',r_value*r_value, 'p_value',p_value, 'std_err',std_err)
+    df.to_csv('prediction_results.csv',columns=['predictions','total_sales','day_tot'])

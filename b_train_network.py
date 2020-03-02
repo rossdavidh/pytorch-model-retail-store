@@ -80,11 +80,11 @@ if __name__ == '__main__':
         if t != 0 and (t & (t - 1) == 0): #i.e. t is a power of 2, check if we should stop
             y_test_pred           = model(x_test)
             loss_test             = loss_fn(y_test_pred,y_test)
-            print('epoch',t,'loss on train data',loss.data[0],' and on test data ',loss_test.data[0])
+            print('epoch',t,'loss on train data',loss.data.item(),' and on test data ',loss_test.data.item())
             y_test_pred_values    = y_test_pred.data.numpy()[:,0]
             y_test_values         = y_test.data.numpy()[:,0]
-            if not best_so_far or loss_test.data[0] < best_so_far:
-                best_so_far = loss_test.data[0]
+            if not best_so_far or loss_test.data.item() < best_so_far:
+                best_so_far = loss_test.data.item()
             elif t < 100: #i.e. we have just gotten started here
                 pass
             else: #i.e. it has not improved for the last 50% of t, meaning we should stop
